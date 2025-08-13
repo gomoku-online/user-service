@@ -1,0 +1,15 @@
+server:
+  port: 3002
+  host: "0.0.0.0"
+
+logging:
+  level: "info,user_service=info,tower_http=info"
+
+oracle:
+  url: "${DB_URL}"
+  min_idle: 2
+  max_conn: 10
+  migration_enabled: false
+
+grpc:
+  concurrency_limit_per_connection: 128

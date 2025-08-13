@@ -1,0 +1,5 @@
+logging:
+  level: "info,api_gateway=debug,tower_http=debug"
+
+oracle:
+  migration_enabled: true
