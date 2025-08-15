@@ -14,7 +14,7 @@ pub trait UnitOfWorkManager: Send + Sync {
     async fn execute_as_atomic<F, Fut, T, E>(&self, f: F) -> Result<T, E>
     where
         F: FnOnce(Arc<dyn UnitOfWork>) -> Fut + Send,
-        Fut: Future<Output = Result<T, E>> + Send,
+        Fut: Future<Output=Result<T, E>> + Send,
         T: Send,
         E: From<UnitOfWorkError> + Send,
     {
@@ -30,7 +30,7 @@ pub trait UnitOfWorkManager: Send + Sync {
             Err(e) => {
                 if let Err(rollback_err) = self.rollback(uow).await {
                     error!(
-                        "FATAL: Failed to rollback unit of work after an error. Rollback error: {}, Original error: {:?}",
+                        "FATAL: Failed to rollback unit of work after an error_code. Rollback error_code: {}, Original error_code: {:?}",
                         rollback_err,
                         std::any::type_name::<E>()
                     );

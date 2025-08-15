@@ -1,9 +1,9 @@
-use shared_kernel::enums::auth_provider::AuthProvider;
-use shared_kernel::value_object::auth_id::AuthId;
+use crate::domain::user::user_auth::UserAuth;
 use crate::domain::user::user_nickname::UserNickname;
 use getset::{CopyGetters, Getters};
+use shared_kernel::enums::auth_provider::AuthProvider;
+use shared_kernel::value_object::auth_id::AuthId;
 use shared_kernel::value_object::user_id::UserId;
-use crate::domain::user::user_auth::UserAuth;
 
 #[derive(CopyGetters, Getters, Debug, Clone, PartialEq, Eq)]
 pub struct User {
@@ -45,7 +45,7 @@ impl User {
                 None,
                 auth_provider,
                 auth_id
-            )]
+            )],
         }
     }
 }

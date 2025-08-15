@@ -43,7 +43,7 @@ where
 impl<M> FindUserByAuthRepository for Arc<FindUserByAuthOracleAdapter<M>>
 where
     M: UnitOfWorkSyncManager + Send + Sync + 'static,
-    M::Connection: Connection<Backend = diesel_oci::Oracle> + LoadConnection + Send + 'static,
+    M::Connection: Connection<Backend=diesel_oci::Oracle> + LoadConnection + Send + 'static,
 {
     async fn find(
         &self,
@@ -55,7 +55,7 @@ where
             None => self.uow_sync_manager.get_connection(),
             Some(tx) => self.uow_sync_manager.get_connection_with_uow(tx),
         }
-        .map_err(|e| FindUserByAuthRepositoryError::Unknown(e.to_string()))?;
+            .map_err(|e| FindUserByAuthRepositoryError::Unknown(e.to_string()))?;
 
         let user_opt = tokio::task::spawn_blocking(move || {
             let mut conn_guard = conn_arc.blocking_lock();
@@ -99,8 +99,8 @@ where
 
             result
         })
-        .await
-        .map_err(|e| FindUserByAuthRepositoryError::Unknown(e.to_string()))??;
+            .await
+            .map_err(|e| FindUserByAuthRepositoryError::Unknown(e.to_string()))??;
 
         Ok(user_opt)
     }

@@ -1,8 +1,8 @@
-use diesel::Connection;
 use diesel::migration::MigrationConnection;
 use diesel::r2d2::{ConnectionManager, PooledConnection};
 use diesel::row::NamedRow;
-use diesel_migrations::{EmbeddedMigrations, MigrationHarness, embed_migrations};
+use diesel::Connection;
+use diesel_migrations::{embed_migrations, EmbeddedMigrations, MigrationHarness};
 use diesel_oci::{OciConnection, Oracle};
 use tracing::info;
 

@@ -103,8 +103,8 @@ impl UnitOfWorkManager for OracleUowManager {
                 Ok(LoggingConnection::new(conn))
             }
         })
-        .await
-        .map_err(|e| UnitOfWorkError::InternalServerError(e.to_string()))??;
+            .await
+            .map_err(|e| UnitOfWorkError::InternalServerError(e.to_string()))??;
 
         self.uow_context_map
             .insert(uow_id, Arc::new(Mutex::new(final_conn)));
@@ -116,7 +116,7 @@ impl UnitOfWorkManager for OracleUowManager {
         self.finalize_uow(uow_id, |conn| {
             LoggingTransactionManager::commit_transaction(conn)
         })
-        .await
+            .await
     }
 
     async fn rollback(&self, uow: Arc<dyn UnitOfWork>) -> Result<(), UnitOfWorkError> {
@@ -124,6 +124,6 @@ impl UnitOfWorkManager for OracleUowManager {
         self.finalize_uow(uow_id, |conn| {
             LoggingTransactionManager::rollback_transaction(conn)
         })
-        .await
+            .await
     }
 }

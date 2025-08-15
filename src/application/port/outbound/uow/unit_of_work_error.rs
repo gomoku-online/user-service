@@ -15,6 +15,6 @@ pub enum UnitOfWorkError {
     #[error("Attempted to commit a unit of work while its connection is still in use: {0}")]
     CommitConflict(UnitOfWorkId),
 
-    #[error("Internal server error: {0}")]
+    #[error("Internal server error_code: {0}")]
     InternalServerError(String),
 }

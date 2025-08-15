@@ -36,8 +36,8 @@ impl CreateRandomNicknameUserCommand {
 
 #[derive(Error, Debug, Clone, PartialEq, Eq)]
 pub enum CreateRandomNicknameUserError {
-    #[error("이미 등록된 사용자입니다: {0}")]
-    AlreadyRegistered(String),
+    #[error("이미 등록된 사용자입니다. {0}-{1}")]
+    AlreadyRegistered(AuthProvider, AuthId),
     #[error("고유 닉네임 생성에 실패했습니다: {0}")]
     NicknameGenerationFailed(String),
     #[error("예기치 못한 에러가 발생하였습니다: {0}")]

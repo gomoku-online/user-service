@@ -1,8 +1,8 @@
 use crate::application::port::outbound::generator::nickname_generator::NicknameGenerator;
 use crate::domain::user::user_nickname::UserNickname;
 use rand::prelude::IndexedRandom;
-use std::fmt::Debug;
 use rand::Rng;
+use std::fmt::Debug;
 
 const ADJECTIVES: &[&str] = &[
     "현명한",

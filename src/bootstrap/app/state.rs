@@ -11,7 +11,6 @@ use anyhow::Result;
 use diesel::r2d2::{ConnectionManager, Pool};
 use diesel_oci::OciConnection;
 use getset::Getters;
-use protos::UserService;
 use std::sync::Arc;
 
 #[derive(Getters)]

@@ -16,7 +16,7 @@ use crate::infrastructure::persistence::oracle::adapter::find_user_by_auth_oracl
 use crate::infrastructure::persistence::oracle::constraint::mapper::create_user_constraint_mapper::CreateUserConstraintMapper;
 use crate::infrastructure::persistence::oracle::error_parser::OracleErrorParser;
 use crate::infrastructure::uow::oracle::oracle_uow_manager::OracleUowManager;
-use anyhow::{Context, Result, anyhow};
+use anyhow::{anyhow, Context, Result};
 use diesel::r2d2::{ConnectionManager, Pool};
 use diesel_logger::LoggingConnection;
 use diesel_oci::OciConnection;

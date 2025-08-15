@@ -7,17 +7,17 @@ pub struct Authentication {
     #[getset(get_copy = "pub with_prefix")]
     auth_provider: AuthProvider,
     #[getset(get = "pub with_prefix")]
-    auth_id: AuthId
+    auth_id: AuthId,
 }
 
 impl Authentication {
     pub fn new(
         auth_provider: AuthProvider,
-        auth_id: AuthId
+        auth_id: AuthId,
     ) -> Self {
         Self {
             auth_provider,
-            auth_id
+            auth_id,
         }
     }
 }

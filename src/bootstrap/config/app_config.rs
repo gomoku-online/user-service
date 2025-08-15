@@ -1,12 +1,12 @@
 use crate::bootstrap::config::grpc_config::GrpcConfig;
 use crate::bootstrap::config::oracle_config::OracleConfig;
+use crate::bootstrap::config::server_config::ServerConfig;
+use anyhow::Result;
 use config::{Config, File, FileFormat};
 use getset::Getters;
 use regex::Regex;
 use serde::Deserialize;
 use std::{env, fs};
-use anyhow::Result;
-use crate::bootstrap::config::server_config::ServerConfig;
 
 #[derive(Getters, Debug, Deserialize)]
 pub struct AppConfig {
@@ -48,6 +48,6 @@ impl AppConfig {
 
             std::env::var(var_name).unwrap_or_else(|_| default.to_string())
         })
-        .to_string()
+            .to_string()
     }
 }

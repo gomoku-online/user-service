@@ -32,7 +32,7 @@ pub struct CreateUserOracleAdapter<M, CM> {
 impl<M, CM> CreateUserOracleAdapter<M, CM>
 where
     M: UnitOfWorkSyncManager,
-    CM: ConstraintMapper<Error = CreateUserRepositoryError>,
+    CM: ConstraintMapper<Error=CreateUserRepositoryError>,
 {
     pub fn new(
         uow_sync_manager: Arc<M>,
@@ -73,8 +73,8 @@ where
 impl<M, CM> CreateUserRepository for Arc<CreateUserOracleAdapter<M, CM>>
 where
     M: UnitOfWorkSyncManager + Send + Sync + 'static,
-    M::Connection: Connection<Backend = diesel_oci::Oracle> + LoadConnection + Send + 'static,
-    CM: ConstraintMapper<Error = CreateUserRepositoryError> + Send + Sync + 'static,
+    M::Connection: Connection<Backend=diesel_oci::Oracle> + LoadConnection + Send + 'static,
+    CM: ConstraintMapper<Error=CreateUserRepositoryError> + Send + Sync + 'static,
 {
     async fn create(
         &self,
@@ -100,7 +100,7 @@ where
             None => self.uow_sync_manager.get_connection(),
             Some(tx) => self.uow_sync_manager.get_connection_with_uow(tx),
         }
-        .map_err(|e| CreateUserRepositoryError::Unknown(e.to_string()))?;
+            .map_err(|e| CreateUserRepositoryError::Unknown(e.to_string()))?;
 
         let self_clone = self.clone();
 
@@ -132,8 +132,8 @@ where
 
             result
         })
-        .await
-        .map_err(|e| CreateUserRepositoryError::Unknown(format!("Task spawn failed: {}", e)))??;
+            .await
+            .map_err(|e| CreateUserRepositoryError::Unknown(format!("Task spawn failed: {}", e)))??;
 
         let domain_auths = created_auth_entities
             .into_iter()

@@ -1,5 +1,5 @@
-use tokio::signal;
 use anyhow::{Context, Result};
+use tokio::signal;
 
 pub async fn wait_shutdown_signal() -> Result<()> {
     let ctrl_c = async {

@@ -6,7 +6,6 @@ use crate::application::port::outbound::persistence::find_user_by_auth_repositor
 use crate::application::port::outbound::uow::unit_of_work_manager::UnitOfWorkManager;
 use async_trait::async_trait;
 use std::sync::Arc;
-use crate::domain::user::user::User;
 
 #[derive(Clone)]
 pub struct FindUserByAuthService<T, P>

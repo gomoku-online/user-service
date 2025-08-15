@@ -98,11 +98,10 @@ where
                 }
                 Err(e) => match e {
                     CreateUserRepositoryError::AlreadyRegistered => {
-                        return Err(CreateRandomNicknameUserError::AlreadyRegistered(format!(
-                            "인증 공급자: {}, 인증 ID: {}",
+                        return Err(CreateRandomNicknameUserError::AlreadyRegistered(
                             command.get_auth_provider(),
-                            command.get_auth_id()
-                        )));
+                            command.get_auth_id().clone(),
+                        ));
                     }
                     CreateUserRepositoryError::Unknown(err_msg) => {
                         return Err(CreateRandomNicknameUserError::Unknown(err_msg));
