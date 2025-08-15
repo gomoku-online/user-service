@@ -9,7 +9,7 @@ use thiserror::Error;
 use validator::Validate;
 
 #[async_trait]
-pub trait FindUserByAuthQueryUseCase {
+pub trait FindUserByAuthQueryUseCase: Send + Sync {
     async fn execute(
         &self,
         query: FindUserByAuthQuery,

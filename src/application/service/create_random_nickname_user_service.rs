@@ -11,7 +11,7 @@ use crate::domain::user::user::User;
 use async_trait::async_trait;
 use std::sync::Arc;
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub struct CreateRandomNicknameUserService<U, P, G>
 where
     U: UnitOfWorkManager + ?Sized,
@@ -29,7 +29,11 @@ where
     P: CreateUserRepository + ?Sized,
     G: NicknameGenerator + ?Sized,
 {
-    pub fn new(uow_manager: Arc<U>, create_user_repository: Arc<P>, nickname_generator: Arc<G>) -> Self {
+    pub fn new(
+        uow_manager: Arc<U>,
+        create_user_repository: Arc<P>,
+        nickname_generator: Arc<G>,
+    ) -> Self {
         Self {
             uow_manager,
             create_user_repository,
@@ -55,7 +59,11 @@ where
         loop {
             if attempts >= MAX_ATTEMPTS {
                 return Err(CreateRandomNicknameUserError::NicknameGenerationFailed(
-                    format!("인증 공급자: {}, 인증 ID: {}", command.get_auth_provider(), command.get_auth_id())
+                    format!(
+                        "인증 공급자: {}, 인증 ID: {}",
+                        command.get_auth_provider(),
+                        command.get_auth_id()
+                    ),
                 ));
             }
             attempts += 1;
@@ -90,14 +98,16 @@ where
                 }
                 Err(e) => match e {
                     CreateUserRepositoryError::AlreadyRegistered => {
-                        return Err(CreateRandomNicknameUserError::AlreadyRegistered(
-                            format!("인증 공급자: {}, 인증 ID: {}", command.get_auth_provider(), command.get_auth_id())
-                        ));
+                        return Err(CreateRandomNicknameUserError::AlreadyRegistered(format!(
+                            "인증 공급자: {}, 인증 ID: {}",
+                            command.get_auth_provider(),
+                            command.get_auth_id()
+                        )));
                     }
                     CreateUserRepositoryError::Unknown(err_msg) => {
                         return Err(CreateRandomNicknameUserError::Unknown(err_msg));
                     }
-                    CreateUserRepositoryError::AlreadyExistNickname => continue
+                    CreateUserRepositoryError::AlreadyExistNickname => continue,
                 },
             }
         }

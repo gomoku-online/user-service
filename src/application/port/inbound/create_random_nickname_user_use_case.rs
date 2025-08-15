@@ -1,6 +1,5 @@
 use crate::application::dtos::user_dto::UserSummaryDto;
 use crate::application::port::outbound::uow::unit_of_work_error::UnitOfWorkError;
-use crate::domain::user::user_nickname::UserNickname;
 use async_trait::async_trait;
 use getset::{CopyGetters, Getters};
 use serde::Deserialize;
@@ -11,7 +10,7 @@ use thiserror::Error;
 use validator::Validate;
 
 #[async_trait]
-pub trait CreateRandomNicknameUserUseCase {
+pub trait CreateRandomNicknameUserUseCase: Send + Sync {
     async fn execute(
         &self,
         command: CreateRandomNicknameUserCommand,

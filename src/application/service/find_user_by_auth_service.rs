@@ -8,7 +8,7 @@ use async_trait::async_trait;
 use std::sync::Arc;
 use crate::domain::user::user::User;
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub struct FindUserByAuthService<T, P>
 where
     T: UnitOfWorkManager + ?Sized,
