@@ -3,18 +3,18 @@ use thiserror::Error;
 
 #[derive(Debug, Error)]
 pub enum UnitOfWorkError {
-    #[error("Unit of work not found for ID: {0}")]
+    #[error("요청하신 ID({0})에 대한 작업 단위를 찾지 못했습니다.")]
     NotFound(UnitOfWorkId),
 
-    #[error("Unit of work is already committed: {0}")]
+    #[error("해당 작업 단위({0})는 이미 커밋이 완료된 상태입니다.")]
     AlreadyCommitted(UnitOfWorkId),
 
-    #[error("Unit of work is already rolled back: {0}")]
+    #[error("해당 작업 단위({0})는 이미 롤백이 완료된 상태입니다.")]
     AlreadyRolledBack(UnitOfWorkId),
 
-    #[error("Attempted to commit a unit of work while its connection is still in use: {0}")]
+    #[error("작업 단위({0})를 커밋할 수 없습니다. 할당된 커넥션이 아직 사용 중입니다.")]
     CommitConflict(UnitOfWorkId),
 
-    #[error("Internal server error_code: {0}")]
+    #[error("예상치 못한 내부 서버 오류가 발생했습니다: {0}")]
     InternalServerError(String),
 }

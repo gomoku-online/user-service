@@ -60,7 +60,7 @@ impl OracleUowManager {
 }
 
 impl UnitOfWorkSyncManager for OracleUowManager {
-    type Connection = Connection;
+    type Conn = Connection;
 
     fn get_connection_with_uow(
         &self,

@@ -73,7 +73,7 @@ where
 impl<M, CM> CreateUserRepository for Arc<CreateUserOracleAdapter<M, CM>>
 where
     M: UnitOfWorkSyncManager + Send + Sync + 'static,
-    M::Connection: Connection<Backend=diesel_oci::Oracle> + LoadConnection + Send + 'static,
+    M::Conn: Connection<Backend=diesel_oci::Oracle> + LoadConnection + Send + 'static,
     CM: ConstraintMapper<Error=CreateUserRepositoryError> + Send + Sync + 'static,
 {
     async fn create(

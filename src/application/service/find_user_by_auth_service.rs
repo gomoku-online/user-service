@@ -44,8 +44,8 @@ where
             .find_user_by_auth_repository
             .find(
                 None,
-                query.get_auth_id().clone(),
                 query.get_auth_provider().clone(),
+                query.get_auth_id().clone(),
             )
             .await;
 

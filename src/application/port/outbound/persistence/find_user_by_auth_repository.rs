@@ -13,8 +13,8 @@ pub trait FindUserByAuthRepository: Debug + Send + Sync {
     async fn find(
         &self,
         tx: Option<Arc<dyn UnitOfWork>>,
-        auth_id: AuthId,
         auth_provider: AuthProvider,
+        auth_id: AuthId,
     ) -> Result<Option<User>, FindUserByAuthRepositoryError>;
 }
 

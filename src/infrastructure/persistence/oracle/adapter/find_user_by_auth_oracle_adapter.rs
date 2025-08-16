@@ -43,13 +43,13 @@ where
 impl<M> FindUserByAuthRepository for Arc<FindUserByAuthOracleAdapter<M>>
 where
     M: UnitOfWorkSyncManager + Send + Sync + 'static,
-    M::Connection: Connection<Backend=diesel_oci::Oracle> + LoadConnection + Send + 'static,
+    M::Conn: Connection<Backend=diesel_oci::Oracle> + LoadConnection + Send + 'static,
 {
     async fn find(
         &self,
         tx: Option<Arc<dyn UnitOfWork>>,
-        auth_id: AuthId,
         auth_provider: AuthProvider,
+        auth_id: AuthId,
     ) -> Result<Option<User>, FindUserByAuthRepositoryError> {
         let conn_arc = match tx {
             None => self.uow_sync_manager.get_connection(),
