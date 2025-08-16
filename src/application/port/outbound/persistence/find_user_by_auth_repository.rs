@@ -12,7 +12,7 @@ use thiserror::Error;
 pub trait FindUserByAuthRepository: Debug + Send + Sync {
     async fn find(
         &self,
-        tx: Option<Arc<dyn UnitOfWork>>,
+        uow: Option<Arc<dyn UnitOfWork>>,
         auth_provider: AuthProvider,
         auth_id: AuthId,
     ) -> Result<Option<User>, FindUserByAuthRepositoryError>;

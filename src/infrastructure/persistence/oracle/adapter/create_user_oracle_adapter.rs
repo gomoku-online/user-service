@@ -78,7 +78,7 @@ where
 {
     async fn create(
         &self,
-        tx: Option<Arc<dyn UnitOfWork>>,
+        uow: Option<Arc<dyn UnitOfWork>>,
         user: User,
     ) -> Result<User, CreateUserRepositoryError> {
         let new_user_entity = NewUserEntity {
@@ -96,7 +96,7 @@ where
             })
             .collect();
 
-        let conn_arc = match tx {
+        let conn_arc = match uow {
             None => self.uow_sync_manager.get_connection(),
             Some(tx) => self.uow_sync_manager.get_connection_with_uow(tx),
         }

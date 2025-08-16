@@ -10,12 +10,12 @@ use thiserror::Error;
 pub trait CreateUserRepository: Debug + Send + Sync {
     async fn create(
         &self,
-        tx: Option<Arc<dyn UnitOfWork>>,
+        uow: Option<Arc<dyn UnitOfWork>>,
         user: User,
     ) -> Result<User, CreateUserRepositoryError>;
 }
 
-#[derive(Debug, Error)]
+#[derive(Debug, Error, Clone)]
 pub enum CreateUserRepositoryError {
     #[error("이미 등록된 사용자입니다")]
     AlreadyRegistered,

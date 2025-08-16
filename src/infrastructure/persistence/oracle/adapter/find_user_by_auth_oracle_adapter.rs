@@ -47,11 +47,11 @@ where
 {
     async fn find(
         &self,
-        tx: Option<Arc<dyn UnitOfWork>>,
+        uow: Option<Arc<dyn UnitOfWork>>,
         auth_provider: AuthProvider,
         auth_id: AuthId,
     ) -> Result<Option<User>, FindUserByAuthRepositoryError> {
-        let conn_arc = match tx {
+        let conn_arc = match uow {
             None => self.uow_sync_manager.get_connection(),
             Some(tx) => self.uow_sync_manager.get_connection_with_uow(tx),
         }
