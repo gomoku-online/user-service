@@ -1,7 +1,7 @@
 use crate::application::port::outbound::uow::unit_of_work_id::UnitOfWorkId;
 use thiserror::Error;
 
-#[derive(Debug, Error)]
+#[derive(Debug, Error, PartialEq, Eq)]
 pub enum UnitOfWorkError {
     #[error("요청하신 ID({0})에 대한 작업 단위를 찾지 못했습니다.")]
     NotFound(UnitOfWorkId),
