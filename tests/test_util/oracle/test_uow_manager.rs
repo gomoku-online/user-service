@@ -9,12 +9,12 @@ use diesel_oci::OciConnection;
 use std::sync::Arc;
 use tokio::sync::{Mutex, OnceCell};
 use tracing::error;
-use user_service::application::port::outbound::uow::unit_of_work::UnitOfWork;
-use user_service::application::port::outbound::uow::unit_of_work_error::UnitOfWorkError;
-use user_service::application::port::outbound::uow::unit_of_work_id::UnitOfWorkId;
-use user_service::application::port::outbound::uow::unit_of_work_manager::UnitOfWorkManager;
-use user_service::infrastructure::uow::oracle::oracle_uow::OracleUow;
-use user_service::infrastructure::uow::uow_sync_manager::UnitOfWorkSyncManager;
+use user_service::shared::application::port::outbound::uow::unit_of_work::UnitOfWork;
+use user_service::shared::application::port::outbound::uow::unit_of_work_error::UnitOfWorkError;
+use user_service::shared::application::port::outbound::uow::unit_of_work_id::UnitOfWorkId;
+use user_service::shared::application::port::outbound::uow::unit_of_work_manager::UnitOfWorkManager;
+use user_service::shared::infrastructure::uow::oracle::oracle_uow::OracleUow;
+use user_service::shared::infrastructure::uow::uow_sync_manager::UnitOfWorkSyncManager;
 
 static ORACLE_DIESEL_UOW_MANAGER: OnceCell<Arc<TestOracleUowManager>> = OnceCell::const_new();
 

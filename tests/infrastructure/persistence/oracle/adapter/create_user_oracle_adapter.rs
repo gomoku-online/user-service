@@ -8,16 +8,16 @@ mod test {
     use shared_kernel::enums::auth_provider::AuthProvider;
     use shared_kernel::value_object::auth_id::AuthId;
     use std::sync::Arc;
-    use user_service::application::port::outbound::persistence::create_user_repository::CreateUserRepository;
-    use user_service::application::port::outbound::uow::unit_of_work::UnitOfWork;
-    use user_service::application::port::outbound::uow::unit_of_work_error::UnitOfWorkError;
-    use user_service::application::port::outbound::uow::unit_of_work_id::UnitOfWorkId;
-    use user_service::domain::user::user::User;
-    use user_service::domain::user::user_nickname::UserNickname;
-    use user_service::infrastructure::persistence::oracle::adapter::create_user_oracle_adapter::CreateUserOracleAdapter;
-    use user_service::infrastructure::persistence::oracle::constraint::mapper::create_user_constraint_mapper::CreateUserConstraintMapper;
-    use user_service::infrastructure::persistence::oracle::error_parser::OracleErrorParser;
-    use user_service::infrastructure::uow::uow_sync_manager::UnitOfWorkSyncManager;
+    use user_service::user::application::port::outbound::persistence::create_user_repository::CreateUserRepository;
+    use user_service::shared::application::port::outbound::uow::unit_of_work::UnitOfWork;
+    use user_service::shared::application::port::outbound::uow::unit_of_work_error::UnitOfWorkError;
+    use user_service::shared::application::port::outbound::uow::unit_of_work_id::UnitOfWorkId;
+    use user_service::user::domain::user::user::User;
+    use user_service::user::domain::user::user_nickname::UserNickname;
+    use user_service::user::infrastructure::persistence::oracle::adapter::create_user_oracle_adapter::CreateUserOracleAdapter;
+    use user_service::user::infrastructure::persistence::oracle::constraint::create_user_constraint_mapper::CreateUserConstraintMapper;
+    use user_service::shared::infrastructure::persistence::oracle::error_parser::OracleErrorParser;
+    use user_service::shared::infrastructure::uow::uow_sync_manager::UnitOfWorkSyncManager;
     use uuid::Uuid;
 
     mock! {

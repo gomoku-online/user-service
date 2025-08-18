@@ -1,10 +1,10 @@
-use crate::application::port::inbound::create_random_nickname_user_use_case::CreateRandomNicknameUserUseCase;
-use crate::application::port::inbound::find_user_by_auth_use_case::FindUserByAuthQueryUseCase;
+use crate::user::application::port::inbound::create_random_nickname_user_use_case::CreateRandomNicknameUserUseCase;
+use crate::user::application::port::inbound::find_user_by_auth_use_case::FindUserByAuthQueryUseCase;
 use crate::bootstrap::app::signal::wait_shutdown_signal;
 use crate::bootstrap::app::state::AppState;
 use crate::bootstrap::config::server_config::ServerConfig;
-use crate::infrastructure::grpc::auth_interceptor::AuthInterceptor;
-use crate::infrastructure::grpc::user_controller::UserGrpcController;
+use crate::shared::infrastructure::grpc::auth_interceptor::AuthInterceptor;
+use crate::user::infrastructure::grpc::user_controller::UserGrpcController;
 use anyhow::Result;
 use protos::{UserService, UserServiceServer};
 use std::sync::Arc;
